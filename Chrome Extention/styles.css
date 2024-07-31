@@ -1,0 +1,254 @@
+/* Base styles */
+body {
+  font-family: Arial, sans-serif;
+  width: 300px;
+  padding: 10px;
+  background-color: #121212; /* Dark background */
+  color: #e0e0e0; /* Light text color */
+}
+
+/* Container */
+#container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Heading */
+h1 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #e0e0e0; /* Light text color */
+}
+
+/* Button */
+button {
+  margin-top: 5px;
+  padding: 8px 12px;
+  border-radius: 5px; /* Rounded corners */
+  background-color: #1a9b32; /* Light purple color */
+  color: #121212; /* Dark text color */
+  border: none; /* No border */
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s; /* Smooth transition */
+}
+
+button:hover {
+  background-color: #17792c; /* Darker purple on hover */
+  transform: scale(1.01); /* Slightly enlarge on hover */
+}
+
+/* Folder styling */
+.folder {
+  margin-top: 5px;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 8px; /* Rounded corners */
+  background: #292929; /* Slightly lighter background for contrast */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+  transition: background 0.3s, transform 0.3s; /* Smooth transition */
+}
+
+.folder:hover {
+  background: #333; /* Darker background on hover */
+  transform: scale(1.01); /* Slightly enlarge on hover */
+}
+
+.folder .folderTitle {
+  display: inline-block;
+  font-size: 20px;
+  font-weight: bold;
+  color: #246c37; /* Light purple color for folder titles */
+}
+
+/* Files container */
+.filesContainer {
+  margin-left: 20px;
+  display: none; /* Initially hidden */
+}
+
+/* File styling */
+.file {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 4px;
+  border-radius: 6px; /* Rounded corners */
+  background: #333; /* Dark background for files */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4); /* Shadow for depth */
+  transition: background 0.3s, transform 0.3s; /* Smooth transition */
+}
+
+.file:hover {
+  background: #444; /* Slightly lighter background on hover */
+  transform: scale(1.01); /* Slightly enlarge on hover */
+}
+
+.file .fileName {
+  display: inline-block;
+  font-size: 18px;
+  cursor: pointer;
+  color: #4dde61; /* Light teal color for file names */
+}
+
+/* Input fields */
+input[type="text"] {
+  width: calc(100% - 90px);
+  background-color: #333; /* Dark background for input fields */
+  color: #e0e0e0; /* Light text color */
+  border: 1px solid #555; /* Dark border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 5px; /* Padding inside input */
+}
+
+/* File viewer */
+#fileViewer {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  background: #1e1e1e; /* Dark background for file viewer */
+  border: 1px solid #444; /* Darker border */
+  padding: 10px;
+  z-index: 1000;
+  overflow: auto;
+  color: #e0e0e0; /* Light text color */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6); /* Shadow for depth */
+}
+
+/* Hidden class */
+.hidden {
+  display: none;
+}
+
+/* File viewer title */
+#fileViewerTitle {
+  font-size: 20px;
+  text-decoration: underline;
+  margin-bottom: 10px;
+  color: #2aca3f; /* Light purple color for titles */
+}
+
+/* Close button */
+#closeViewer {
+  background: #3c3c3c;
+  border: #121212;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  color: #2fc237; /* Light purple color */  
+  border: none; /* No border */
+  cursor: pointer;
+}
+#closeViewer:hover{
+  background: #545454;
+}
+
+/* File form */
+.fileForm {
+  display: none; /* Initially hidden */
+}
+
+.fileForm.visible {
+  display: block; /* Visible when folder is selected */
+}
+
+#fileForm {
+  margin-top: 10px;
+}
+
+#fileForm select,
+#fileForm input {
+  width: calc(100% - 90px);
+  background-color: #333; /* Dark background for form fields */
+  color: #e0e0e0; /* Light text color */
+  border: 1px solid #555; /* Dark border */
+  border-radius: 5px; /* Rounded corners */
+  margin-bottom: 5px;
+  padding: 5px; /* Padding inside form fields */
+}
+
+/* Dropdown for selecting file type */
+/*#fileForm select {
+  background-color: #333; 
+  color: #e0e0e0; 
+  border: 1px solid #555; 
+  border-radius: 5px; 
+  padding: 5px; 
+}*/
+
+/* Add Folder and Add File Button Styling */
+#addFolder {
+  background-color: #25a946; /* Light purple color */
+  color: #121212; /* Dark text color */
+}
+
+#addFolder:hover {
+  background-color: #24762b; /* Darker purple on hover */
+}
+
+/* Reduce size of Add File button */
+.fileForm button {
+  background-color: #46dc4d; /* Light teal color */
+  color: #121212; /* Dark text color */
+  padding: 6px 10px; /* Smaller padding */
+  font-size: 14px; /* Slightly smaller font size */
+  border-radius: 5px; /* Rounded corners */
+}
+
+.fileForm button:hover {
+  background-color: #268715; /* Darker teal on hover */
+}
+
+#fileViewerContent {
+  font-size: 15px; /* Increase text size */
+  line-height: 1.5; /* Improve line spacing for readability */
+  overflow-wrap: break-word; /* Ensure long words or URLs break correctly */
+  word-wrap: break-word; /* Older browser support for breaking long words */
+}
+
+/* Style for dropdown options */
+.dropdown-option {
+  background-color: #333; /* Dark background for options */
+  color: #e0e0e0; /* Light text color */
+}
+
+/* Remove default dropdown arrow in WebKit browsers */
+#fileType {
+  -webkit-appearance: '▼'; /* Remove default dropdown arrow */
+  -moz-appearance: '▼'; /* Remove default dropdown arrow */
+  appearance: '▼'; /* Remove default dropdown arrow */
+  margin-right: 5px;
+  background-color: #333; /* Dark background */
+  color: #e0e0e0; /* Light text color */
+  border: 1px solid #555; /* Dark border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 5px; /* Padding inside select */
+  font-size: 16px; /* Font size of the dropdown text */
+}
+
+.deleteButton, .FiledeleteButton {
+  background-color: #ff4d4d; /* Red background for delete button */
+  color: #121212; /* Dark text color */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 5px 8px; /* Padding inside button */
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s; /* Smooth transition */
+  margin-left: 10px; /* Space between name and delete button */
+}
+
+.deleteButton:hover, .FiledeleteButton:hover {
+  background-color: #cc0000; /* Darker red on hover */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Hide delete button for selected folder and its files */
+.folder.selected .deleteButton,
+.folder.selected .file .deleteButton {
+  display: none;
+}
+
+.LinkfileName {
+  font-size: 18px;
+  color: rgb(70, 85, 215);
+}
