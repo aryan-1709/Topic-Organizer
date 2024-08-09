@@ -54,10 +54,11 @@ button:hover {
 }
 
 .folder .folderTitle {
+  text-decoration: underline;
   display: inline-block;
   font-size: 20px;
   font-weight: bold;
-  color: #246c37; /* Light purple color for folder titles */
+  color: #3fb65f; /* Light purple color for folder titles */
 }
 
 /* Files container */
@@ -84,7 +85,7 @@ button:hover {
 
 .file .fileName {
   display: inline-block;
-  font-size: 18px;
+  font-size: 15px;
   cursor: pointer;
   color: #4dde61; /* Light teal color for file names */
 }
@@ -167,15 +168,6 @@ input[type="text"] {
   padding: 5px; /* Padding inside form fields */
 }
 
-/* Dropdown for selecting file type */
-/*#fileForm select {
-  background-color: #333; 
-  color: #e0e0e0; 
-  border: 1px solid #555; 
-  border-radius: 5px; 
-  padding: 5px; 
-}*/
-
 /* Add Folder and Add File Button Styling */
 #addFolder {
   background-color: #25a946; /* Light purple color */
@@ -249,6 +241,6 @@ input[type="text"] {
 }
 
 .LinkfileName {
-  font-size: 18px;
+  font-size: 15px;
   color: rgb(70, 85, 215);
 }
