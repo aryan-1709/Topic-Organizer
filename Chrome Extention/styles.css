@@ -92,7 +92,7 @@ button:hover {
 
 /* Input fields */
 input[type="text"] {
-  width: calc(100% - 90px);
+  width: calc(100% - 20px); /* Full width minus padding */
   background-color: #333; /* Dark background for input fields */
   color: #e0e0e0; /* Light text color */
   border: 1px solid #555; /* Dark border */
@@ -100,13 +100,26 @@ input[type="text"] {
   padding: 5px; /* Padding inside input */
 }
 
+/* Textarea styling */
+textarea {
+  margin-top: 5px;
+  width: calc(100% - 10px); /* Full width minus padding */
+  background-color: #333; /* Dark background for textarea */
+  color: #e0e0e0; /* Light text color */
+  border: 1px solid #555; /* Dark border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 5px; /* Padding inside textarea */
+  box-sizing: border-box; /* Ensure padding is included in the width */
+  margin-bottom: 10px; /* Space below textarea */
+  font-size: 15px; /* Consistent font size */
+  resize: vertical; /* Allow vertical resizing only */
+}
+
 /* File viewer */
 #fileViewer {
   position: fixed;
   top: 20px;
   left: 20px;
-  right: 20px;
-  bottom: 20px;
   background: #1e1e1e; /* Dark background for file viewer */
   border: 1px solid #444; /* Darker border */
   padding: 10px;
@@ -115,7 +128,17 @@ input[type="text"] {
   color: #e0e0e0; /* Light text color */
   border-radius: 8px; /* Rounded corners */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6); /* Shadow for depth */
+  min-width: 300px; /* Minimum width */
+  min-height: 200px; /* Minimum height */
+  max-width: 90vw; /* Maximum width (responsive) */
+  max-height: 80vh; /* Maximum height (responsive) */
+  resize: both; /* Allow resizing in both directions */
+  overflow: auto; /* Scrollbars if content overflows */
+  /* Ensure smooth resizing */
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
 }
+
+
 
 /* Hidden class */
 .hidden {
@@ -140,7 +163,7 @@ input[type="text"] {
   border: none; /* No border */
   cursor: pointer;
 }
-#closeViewer:hover{
+#closeViewer:hover {
   background: #545454;
 }
 
@@ -159,7 +182,7 @@ input[type="text"] {
 
 #fileForm select,
 #fileForm input {
-  width: calc(100% - 90px);
+  width: calc(100% - 20px); /* Full width minus padding */
   background-color: #333; /* Dark background for form fields */
   color: #e0e0e0; /* Light text color */
   border: 1px solid #555; /* Dark border */
@@ -185,6 +208,8 @@ input[type="text"] {
   padding: 6px 10px; /* Smaller padding */
   font-size: 14px; /* Slightly smaller font size */
   border-radius: 5px; /* Rounded corners */
+  width: 100%; /* Full width */
+  margin-top: 5px; /* Space above the button */
 }
 
 .fileForm button:hover {
@@ -196,6 +221,8 @@ input[type="text"] {
   line-height: 1.5; /* Improve line spacing for readability */
   overflow-wrap: break-word; /* Ensure long words or URLs break correctly */
   word-wrap: break-word; /* Older browser support for breaking long words */
+  white-space: pre-wrap; /* Preserve white space and new lines */
+  font-family: monospace; /* Optional: Use a monospace font for better readability */
 }
 
 /* Style for dropdown options */
@@ -243,4 +270,9 @@ input[type="text"] {
 .LinkfileName {
   font-size: 15px;
   color: rgb(70, 85, 215);
+}
+
+#fileViewerContent {
+  white-space: pre-wrap; /* Preserve white space and new lines */
+  font-family: monospace; /* Optional: Use a monospace font for better readability */
 }

@@ -55,7 +55,51 @@ document.addEventListener("DOMContentLoaded", () => {
     const fileForm = document.createElement("div");
     fileForm.className = "fileForm";
   
-    // The rest of your createFolder code remains unchanged
+    const fileTypeDropdown = document.createElement("select");
+    fileTypeDropdown.innerHTML = `
+      <option value="text">Text</option>
+      <option value="link">Link</option>
+    `;
+    fileTypeDropdown.id = "fileType";
+    fileForm.appendChild(fileTypeDropdown);
+
+    const fileNameInput = document.createElement("input");
+    fileNameInput.type = "text";
+    fileNameInput.placeholder = "Name for Link/Item";
+    fileForm.appendChild(fileNameInput);
+
+    const fileContentInput = document.createElement("textarea"); // Use <textarea> to handle new lines
+    fileContentInput.placeholder = "Text or URL";
+    fileForm.appendChild(fileContentInput);
+
+    const addFileButton = document.createElement("button");
+    addFileButton.textContent = "Add Item";
+    fileForm.appendChild(addFileButton);
+
+    fileForm.addEventListener("click", (event) => {
+      if (event.target === addFileButton) {
+        const fileType = fileTypeDropdown.value;
+        const fileName = fileNameInput.value.trim();
+        const fileContent = fileContentInput.value.trim();
+
+        if (fileName && fileContent) {
+          let fileElement;
+          if (fileType === "text") {
+            fileElement = createFile(fileName, fileContent);
+          } else if (fileType === "link") {
+            fileElement = createLink(fileName, fileContent);
+          }
+          if (fileElement) {
+            filesContainer.appendChild(fileElement);
+            fileNameInput.value = ""; // Clear input field
+            fileContentInput.value = ""; // Clear input field
+            saveFoldersToLocalStorage();
+          }
+        }
+      }
+    });
+
+    folderDiv.appendChild(fileForm);
   
     folderDiv.addEventListener("click", (event) => {
       if (!fileForm.contains(event.target) && !filesContainer.contains(event.target)) {
@@ -125,13 +169,12 @@ document.addEventListener("DOMContentLoaded", () => {
     return fileDiv;
   }
   
-
   function createLink(name, url) {
     const linkDiv = document.createElement("div");
     linkDiv.className = "file";
 
     const linkName = document.createElement("a");
-    linkName.className = "LinkfileName"
+    linkName.className = "LinkfileName";
     linkName.href = url;
     linkName.textContent = name;
     linkName.target = "_blank";
