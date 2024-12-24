@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Text Editor</title>
+    <style>
+        .toolbar {
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+        .toolbar button, .toolbar select {
+            margin-right: 5px;
+        }
+        .editor {
+            border: 1px solid #ccc;
+            padding: 10px;
+            min-height: 200px;
+            width: 100%;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="toolbar">
+        <!-- Text Formatting Buttons -->
+        <button onclick="formatText('bold')">Bold</button>
+        <button onclick="formatText('italic')">Italic</button>
+        <button onclick="formatText('underline')">Underline</button>
+        
+        <!-- Text Alignment -->
+        <select onchange="formatText('justifyLeft', this.value)">
+            <option value="">Align Left</option>
+            <option value="center">Center</option>
+            <option value="right">Align Right</option>
+            <option value="justify">Justify</option>
+        </select>
+        
+        <!-- List Formatting -->
+        <button onclick="formatText('insertUnorderedList')">Bullets</button>
+        <button onclick="formatText('insertOrderedList')">Numbering</button>
+    </div>
+    <div class="editor" contenteditable="true">
+        <p>Type your text here...</p>
+    </div>
+
+    <script>
+        function formatText(command, value) {
+            document.execCommand(command, false, value);
+        }
+    </script>
+</body>
+</html>

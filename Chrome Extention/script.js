@@ -35,8 +35,8 @@ document.addEventListener("DOMContentLoaded", () => {
   
     const folderTitle = document.createElement("div");
     folderTitle.className = "folderTitle";
-    folderTitle.dataset.fullName = name; // Store the full name in a data attribute
-    folderTitle.textContent = truncateName(name, 20);
+    folderTitle.dataset.fullName = name; // Store the full name
+    folderTitle.textContent = truncateName(name, 18); // Display truncated name
     folderDiv.appendChild(folderTitle);
   
     const deleteFolderButton = document.createElement("button");
@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
     fileNameInput.placeholder = "Name for Link/Item";
     fileForm.appendChild(fileNameInput);
 
-    const fileContentInput = document.createElement("textarea"); // Use <textarea> to handle new lines
+    const fileContentInput = document.createElement("textarea");
     fileContentInput.placeholder = "Text or URL";
     fileForm.appendChild(fileContentInput);
 
@@ -91,8 +91,8 @@ document.addEventListener("DOMContentLoaded", () => {
           }
           if (fileElement) {
             filesContainer.appendChild(fileElement);
-            fileNameInput.value = ""; // Clear input field
-            fileContentInput.value = ""; // Clear input field
+            fileNameInput.value = "";
+            fileContentInput.value = "";
             saveFoldersToLocalStorage();
           }
         }
@@ -109,9 +109,9 @@ document.addEventListener("DOMContentLoaded", () => {
           currentlySelected.querySelector(".filesContainer").style.display = "none";
           currentlySelected.querySelector(".fileForm").classList.remove("visible");
   
-          // Restore the truncated name when another folder is selected
-          const folderTitle = currentlySelected.querySelector(".folderTitle");
-          folderTitle.textContent = truncateName(folderTitle.dataset.fullName, 20);
+          // Restore the truncated name for the previously selected folder
+          const prevFolderTitle = currentlySelected.querySelector(".folderTitle");
+          prevFolderTitle.textContent = truncateName(prevFolderTitle.dataset.fullName, 18);
         }
   
         const isSelected = folderDiv.classList.contains("selected");
@@ -120,7 +120,9 @@ document.addEventListener("DOMContentLoaded", () => {
         fileForm.classList.toggle("visible", !isSelected);
   
         // Show full name if selected, otherwise truncated name
-        folderTitle.textContent = isSelected ? truncateName(name, 20) : name;
+        folderTitle.textContent = isSelected ? 
+          truncateName(folderTitle.dataset.fullName, 18) : 
+          folderTitle.dataset.fullName;
       }
     });
   
@@ -146,7 +148,8 @@ document.addEventListener("DOMContentLoaded", () => {
   
     const fileName = document.createElement("div");
     fileName.className = "fileName";
-    fileName.textContent = truncateName(name, 22);
+    fileName.dataset.fullName = name; // Store the full name
+    fileName.textContent = truncateName(name, 27); // Display truncated name
     fileDiv.appendChild(fileName);
   
     const deleteFileButton = document.createElement("button");
@@ -158,11 +161,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     fileDiv.appendChild(deleteFileButton);
   
-    fileDiv.dataset.content = content; // Save content in data attribute
+    fileDiv.dataset.content = content;
   
     fileName.addEventListener("click", () => {
-      fileViewerTitle.textContent = name;
-      fileViewerContent.textContent = content; // Load content from data attribute
+      fileViewerTitle.textContent = name; // Use full name in viewer
+      fileViewerContent.textContent = content;
       fileViewer.classList.remove("hidden");
     });
   
@@ -176,7 +179,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const linkName = document.createElement("a");
     linkName.className = "LinkfileName";
     linkName.href = url;
-    linkName.textContent = name;
+    linkName.dataset.fullName = name; // Store the full name
+    linkName.textContent = truncateName(name, 27); // Display truncated name
     linkName.target = "_blank";
     linkDiv.appendChild(linkName);
 
@@ -199,13 +203,13 @@ document.addEventListener("DOMContentLoaded", () => {
   function saveFoldersToLocalStorage() {
     const folders = [];
     document.querySelectorAll(".folder").forEach((folderDiv) => {
-      const name = folderDiv.querySelector(".folderTitle").textContent;
+      const folderTitle = folderDiv.querySelector(".folderTitle");
+      const name = folderTitle.dataset.fullName; // Use the full name from data attribute
       const files = [];
       folderDiv.querySelectorAll(".file").forEach((fileDiv) => {
-        const fileName =
-          fileDiv.querySelector(".fileName")?.textContent ||
-          fileDiv.querySelector("a").textContent;
-        const fileContent = fileDiv.dataset.content || fileDiv.querySelector("a").href;
+        const fileElement = fileDiv.querySelector(".fileName") || fileDiv.querySelector("a");
+        const fileName = fileElement.dataset.fullName; // Use the full name from data attribute
+        const fileContent = fileDiv.dataset.content || fileElement.href;
         const fileType = fileDiv.querySelector(".fileName") ? "text" : "link";
         files.push({ name: fileName, content: fileContent, type: fileType });
       });
