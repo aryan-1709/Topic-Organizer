@@ -1,5 +1,5 @@
 # Custom Chrome Extension
-
+<img src="https://res.cloudinary.com/dc7cojpvn/image/upload/v1732862159/topic_yzfdgw.jpg" alt="#"> </img>
 ## Overview
 
 This Chrome extension provides a simple file folder-like structure for organizing and storing items. Topics act as folders, and items within these topics can be either links or text. This README will guide you through the setup process and explain how to use the extension.
